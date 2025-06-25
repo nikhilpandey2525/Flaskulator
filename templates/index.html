@@ -1,40 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="./static/mywebscript.js"></script>
+    <meta charset="UTF-8">
+    <title>Scientific Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="../static/mywebscript.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <style>
-        .center-heading {
-            text-align: center;
+        body {
+            background-color: #f8f9fa;
+            padding-top: 50px;
+        }
+        .calculator-container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .btn {
+            width: 100%;
+        }
+        .section-title {
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
     </style>
-
 </head>
 <body>
-    <div class="card">
-	<h1 class="center-heading">Basic Mathematical Application</h1> 
-        <div style="padding: 25px 25px 25px 25px;">
-        <div class="card-body">
-            <div class="mb-3">
-                <label class="form-label">Number 1</label>
-                <input type="number" class="form-control" id="num1">
-            </div>
-    
-            <div class="mb-3">
-                <label class="form-label">Number 2</label>
-                <input type="number" class="form-control" id="num2">
-            </div>
-    
-            <div style="padding: 25px;">
-                <button onclick="runAddition()" class="btn btn-secondary">Add</button>
-                <button onclick="runSubtraction()" class="btn btn-secondary">Subtract</button>
-                <button onclick="runMultiplication()" class="btn btn-secondary">Multiply</button>
-            </div>
-	<h1 class="center-heading">Response from server</h1> 
-            <div style="padding: 25px 25px 25px 25px;">
-    
-            <div id="system_response" style="padding: 25px;"></div>
+
+<div class="container calculator-container">
+    <h2 class="text-center mb-4">Scientific Calculator (Flask Backend)</h2>
+
+    <div class="card p-4 shadow">
+        <div class="form-group">
+            <label for="num1">Number 1:</label>
+            <input type="number" class="form-control" id="num1" placeholder="Enter first number">
+        </div>
+
+        <div class="form-group">
+            <label for="num2">Number 2:</label>
+            <input type="number" class="form-control" id="num2" placeholder="Enter second number (if needed)">
+        </div>
+
+        <div class="section-title">Basic Operations</div>
+        <div class="row">
+            <div class="col-4 mb-2"><button class="btn btn-primary" onclick="runOperation('sum')">Add</button></div>
+            <div class="col-4 mb-2"><button class="btn btn-success" onclick="runOperation('sub')">Subtract</button></div>
+            <div class="col-4 mb-2"><button class="btn btn-warning" onclick="runOperation('mul')">Multiply</button></div>
+            <div class="col-4 mb-2"><button class="btn btn-danger" onclick="runOperation('div')">Divide</button></div>
+            <div class="col-4 mb-2"><button class="btn btn-dark" onclick="runOperation('power')">Power (x^y)</button></div>
+        </div>
+
+        <div class="section-title">Scientific Functions (Single Input)</div>
+        <div class="row">
+            <div class="col-4 mb-2"><button class="btn btn-secondary" onclick="runSingleInput('sqrt')">√ Square Root</button></div>
+            <div class="col-4 mb-2"><button class="btn btn-secondary" onclick="runSingleInput('log')">log(x)</button></div>
+            <div class="col-4 mb-2"><button class="btn btn-secondary" onclick="runSingleInput('sin')">sin(x)</button></div>
+            <div class="col-4 mb-2"><button class="btn btn-secondary" onclick="runSingleInput('cos')">cos(x)</button></div>
+            <div class="col-4 mb-2"><button class="btn btn-secondary" onclick="runSingleInput('tan')">tan(x)</button></div>
+        </div>
+
+        <div class="section-title">Constants</div>
+        <div class="row">
+            <div class="col-6 mb-2"><button class="btn btn-info" onclick="runNoInput('pi')">π (Pi)</button></div>
+            <div class="col-6 mb-2"><button class="btn btn-info" onclick="runNoInput('e')">e (Euler's Number)</button></div>
+        </div>
+
+        <hr>
+        <h5>Response from Server:</h5>
+        <div id="system_response" class="alert alert-secondary text-center">
+            Result will appear here...
         </div>
     </div>
-</body>
-</html>
+</div>

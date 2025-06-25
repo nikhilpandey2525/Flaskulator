@@ -1,26 +1,40 @@
-    const sendRequest = async (operation) => {
-    const num1 = document.getElementById("num1").value;
-    const num2 = document.getElementById("num2").value;
+const getValue = (id) => document.getElementById(id).value;
+
+const displayResult = (message) => {
+    document.getElementById("system_response").innerText = message;
+};
+
+const runOperation = async (operation) => {
+    const num1 = getValue("num1");
+    const num2 = getValue("num2");
+
+    if (!num1 || !num2) {
+        return displayResult("Please enter both numbers.");
+    }
 
     try {
-        const response = await fetch(`${operation}?num1=${num1}&num2=${num2}`);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        
-        const data = await response.text();
-        document.getElementById("system_response").innerHTML = data;
-    } catch (error) {
-        console.error('Error:', error);
-        document.getElementById("system_response").innerHTML = 'An error occurred, please try again.';
+        const res = await fetch(`/${operation}?num1=${num1}&num2=${num2}`);
+        const data = await res.text();
+        displayResult(`Result: ${data}`);
+    } catch (err) {
+        displayResult("Server error. Please try again.");
     }
 };
 
-const runOperation = (operation) => {
-      sendRequest(operation);
+const runSingleInput = async (operation) => {
+    const num = getValue("num1");
+
+    if (!num) {
+        return displayResult("Please enter Number 1 for this operation.");
+    }
+
+    try {
+        const res = await fetch(`/${operation}?num=${num}`);
+        const data = await res.text();
+        displayResult(`Result: ${data}`);
+    } catch (err) {
+        displayResult("Server error. Please try again.");
+    }
 };
 
-const runAddition = () => runOperation("sum");
-const runSubtraction = () => runOperation("sub");
-const runMultiplication = () => runOperation("mul");
+ 
