@@ -15,7 +15,9 @@ This is a simple scientific calculator web app built using **Flask** (Python bac
 - Responsive UI with Bootstrap 4
 
 ---
+
 Image of Application
+
 ![screenshot](./static/screenshot.png)
 
 ---
