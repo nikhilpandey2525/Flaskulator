@@ -19,6 +19,3 @@ Image of Application
 ![screenshot](./static/screenshot.png)
 
 ---
-
-## 🛠️ Project Structure
-
