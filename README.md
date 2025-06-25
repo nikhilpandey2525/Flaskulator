@@ -15,12 +15,8 @@ This is a simple scientific calculator web app built using **Flask** (Python bac
 - Responsive UI with Bootstrap 4
 
 ---
-
-## 📸 Screenshot
-
-> Add your image in the root directory or `static/` folder. Rename it to `screenshot.png` or update the name below.
-
-![screenshot](screenshot.png)
+Image of Application
+![screenshot](./static/screenshot.png)
 
 ---
 
